@@ -31,6 +31,5 @@ public class WarehouseDAOImpl implements WarehouseDAO {
     public List<Warehouse> getAllWarehouse() {
         return new ArrayList<>();
     }
-    
 
 }

@@ -15,12 +15,11 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public Supplier getSupplierById(int supplierId) {
         return null;
-
     }
 
     @Override
     public void updateSupplier(Supplier supplier) {
-
+        
     }
 
     @Override
@@ -32,7 +31,6 @@ public class SupplierDAOImpl implements SupplierDAO {
     public List<Supplier> getAllSuppliers() {
         return new ArrayList<>();
     }
-    
 
 
 

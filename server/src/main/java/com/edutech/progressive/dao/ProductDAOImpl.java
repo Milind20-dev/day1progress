@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.edutech.progressive.entity.Product;
 
-public class ProductDAOImpl implements ProductDAO {
+public class ProductDAOImpl implements ProductDAO{
 
     @Override
     public int addProduct(Product product) {
@@ -15,12 +15,10 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public Product getProductById(int productId) {
         return null;
-
     }
 
     @Override
     public void updateProduct(Product product) {
-        
     }
 
     @Override
@@ -32,6 +30,5 @@ public class ProductDAOImpl implements ProductDAO {
     public List<Product> getAllProducts() {
         return new ArrayList<>();
     }
-    
 
 }

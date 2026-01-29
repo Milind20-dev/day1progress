@@ -8,23 +8,23 @@ import java.util.Properties;
 public class DatabaseConnectionManager {
     private static Properties properties = new Properties();
 
-    public static void loadProperties(){
-        try(InputStream input = DatabaseConnectionManager.class.getClassLoader().getResourceAsStream("application.properties")){
+    static{
+        loadProperties();
+    }
 
-            if(input == null){
+    private static void loadProperties(){
+        try(InputStream input= DatabaseConnectionManager.class.getClassLoader().getResourceAsStream("application.properties")){
+            if(input==null){
                 throw new RuntimeException("application.properties file not found");
             }
-
-
+            properties.load(input);
+            
         }catch(Exception e){
             throw new RuntimeException("Failed to load database properties",e);
         }
     }
     public static Connection getConnection(){
         try{
-            if(properties.isEmpty()){
-                loadProperties();
-            }
             String url = properties.getProperty("spring.datasource.url");
             String username = properties.getProperty("spring.datasource.username");
             String password = properties.getProperty("spring.datasource.password");
