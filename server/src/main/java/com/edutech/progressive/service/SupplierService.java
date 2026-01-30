@@ -12,8 +12,7 @@ public interface SupplierService {
 
     List<Supplier> getAllSuppliersSortedByName();
 
-    default public void emptyArrayList() {
-    }
+    void emptyArrayList();
 
     //Do not implement these methods in SupplierServiceImplArraylist.java class
     default void updateSupplier(Supplier supplier) {

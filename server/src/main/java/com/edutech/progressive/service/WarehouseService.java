@@ -11,8 +11,7 @@ public interface WarehouseService {
 
     List<Warehouse> getWarehousesSortedByCapacity();
 
-    default public void emptyArrayList() {
-    }
+    void emptyArrayList();
 
     //Do not implement these methods in WarehouseServiceImplArraylist.java class
     default void updateWarehouse(Warehouse warehouse) {
