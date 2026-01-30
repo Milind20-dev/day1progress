@@ -1,5 +1,37 @@
 package com.edutech.progressive.service.impl;
 
-public class WarehouseServiceImplArraylist  {
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import com.edutech.progressive.entity.Warehouse;
+import com.edutech.progressive.service.WarehouseService;
+
+public class WarehouseServiceImplArraylist implements WarehouseService {
+
+    List<Warehouse> warehouseList = new ArrayList<>();
+
+    @Override
+    public List<Warehouse> getAllWarehouses() {
+        return warehouseList;
+    }
+
+    @Override
+    public int addWarehouse(Warehouse warehouse) {
+        warehouseList.add(warehouse);
+        return warehouseList.size();
+    }
+
+    @Override
+    public List<Warehouse> getWarehousesSortedByCapacity() {
+        Collections.sort(warehouseList);
+        return warehouseList;
+    }
+
+    @Override
+    public void emptyArrayList() {
+        warehouseList.clear();
+    }
+    
 
 }
