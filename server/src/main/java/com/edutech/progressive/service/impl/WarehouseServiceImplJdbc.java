@@ -1,63 +1,52 @@
 package com.edutech.progressive.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.edutech.progressive.dao.WarehouseDAO;
 import com.edutech.progressive.entity.Warehouse;
 import com.edutech.progressive.service.WarehouseService;
 
+import java.sql.SQLException;
+import java.util.Comparator;
+import java.util.List;
+
 public class WarehouseServiceImplJdbc implements WarehouseService {
+
     private WarehouseDAO warehouseDAO;
 
     public WarehouseServiceImplJdbc(WarehouseDAO warehouseDAO) {
         this.warehouseDAO = warehouseDAO;
     }
 
-    
     @Override
-    public void deleteWarehouse(int warehouseId) {
-        
-    }
-
-
-    @Override
-    public Warehouse getWarehouseById(int warehouseId) {
-        return null;
-    }
-
-
-    @Override
-    public List<Warehouse> getWarehouseBySupplier(int supplierId) {
-        return null;
-    }
-
-
-    @Override
-    public void updateWarehouse(Warehouse warehouse) {
-        
-    }
-
-
-    @Override
-    public List<Warehouse> getAllWarehouses() {
-        return new ArrayList<>();
+    public List<Warehouse> getAllWarehouses() throws SQLException {
+        return warehouseDAO.getAllWarehouse();
     }
 
     @Override
-    public int addWarehouse(Warehouse warehouse) {
-        return -1;
+    public int addWarehouse(Warehouse warehouse) throws SQLException {
+        int id = warehouseDAO.addWarehouse(warehouse);
+        warehouse.setWarehouseId(id); // REQUIRED
+        return id;
     }
 
     @Override
-    public List<Warehouse> getWarehousesSortedByCapacity() {
-        return new ArrayList<>();
+    public void updateWarehouse(Warehouse warehouse) throws SQLException {
+        warehouseDAO.updateWarehouse(warehouse);
     }
 
     @Override
-    public void emptyArrayList() {
-        
+    public void deleteWarehouse(int warehouseId) throws SQLException {
+        warehouseDAO.deleteWarehouse(warehouseId);
     }
-    
 
+    @Override
+    public Warehouse getWarehouseById(int warehouseId) throws SQLException {
+        return warehouseDAO.getWarehouseById(warehouseId);
+    }
+
+    @Override
+    public List<Warehouse> getWarehousesSortedByCapacity() throws SQLException {
+        List<Warehouse> warehouses = warehouseDAO.getAllWarehouse();
+        warehouses.sort(Comparator.comparingInt(Warehouse::getCapacity)); // ASCENDING
+        return warehouses;
+    }
 }
