@@ -1,16 +1,15 @@
 package com.edutech.progressive.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import com.edutech.progressive.entity.Warehouse;
 import com.edutech.progressive.service.WarehouseService;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 public class WarehouseServiceImplArraylist implements WarehouseService {
 
-    List<Warehouse> warehouseList = new ArrayList<>();
+    private static List<Warehouse> warehouseList = new ArrayList<>();
 
     @Override
     public List<Warehouse> getAllWarehouses() {
@@ -25,14 +24,35 @@ public class WarehouseServiceImplArraylist implements WarehouseService {
 
     @Override
     public List<Warehouse> getWarehousesSortedByCapacity() {
-        warehouseList.sort(Comparator.comparingInt(Warehouse::getCapacity).reversed());
-        return warehouseList;
+        List<Warehouse> sortedList = new ArrayList<>(warehouseList);
+        sortedList.sort(Comparator.comparing(Warehouse::getCapacity));
+        return sortedList;
     }
 
     @Override
     public void emptyArrayList() {
         warehouseList.clear();
     }
-    
 
+    // ---- Placeholder / unused methods ----
+
+    @Override
+    public void updateWarehouse(Warehouse warehouse) {
+        // not required for ArrayList version
+    }
+
+    @Override
+    public void deleteWarehouse(int warehouseId) {
+        // not required for ArrayList version
+    }
+
+    @Override
+    public Warehouse getWarehouseById(int warehouseId) {
+        return null;
+    }
+
+    @Override
+    public List<Warehouse> getWarehouseBySupplier(int supplierId) {
+        return null;
+    }
 }
